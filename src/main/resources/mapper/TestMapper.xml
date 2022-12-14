@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinhang.gamesnake.mapper.TestMapper">
+    <select id="getList" resultType="com.xinhang.gamesnake.entity.Test">
+        select * from test order by id desc
+    </select>
+
+    <select id="getPageList" resultType="com.xinhang.gamesnake.entity.Test">
+        select * from test order by id desc
+    </select>
+</mapper>
