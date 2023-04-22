@@ -30,6 +30,7 @@ public class SocketHandler extends ChannelInboundHandlerAdapter {
                 }
             }
         } finally {
+            ctx.flush();
             ReferenceCountUtil.release(msg);
         }
     }
@@ -43,14 +44,14 @@ public class SocketHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception{
         System.out.println("移除客户端链接：" + ctx.toString());
-        clients.remove(ctx.channel());
+//        clients.remove(ctx.channel());
+        ctx.close();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        System.out.println("into exceptionCaught" + ctx.toString());
+        System.out.println("into exceptionCaught:" + cause.getMessage());
         cause.printStackTrace();
-        ctx.channel().close();
-        clients.remove(ctx.channel());
+        ctx.close();
     }
 }
